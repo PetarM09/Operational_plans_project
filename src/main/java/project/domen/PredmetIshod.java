@@ -1,17 +1,21 @@
 package project.domen;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
 @Entity
 @Getter
 @Setter
-public class MesecniPlan {
+public class PredmetIshod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int mesec;
-    private int godina;
+
+    @ManyToOne
+    @JoinColumn(name = "ishod_id")
+    private IshodUcenja ishod;
 
     @ManyToOne
     @JoinColumn(name = "predmet_id")
@@ -19,10 +23,5 @@ public class MesecniPlan {
 
     @ManyToOne
     @JoinColumn(name = "godina_id")
-    private GodinaSkolovanja godinaSkolovanja;
-
-    @ManyToOne
-    @JoinColumn(name = "profesor_id", referencedColumnName = "id")
-    private User profesor;
-
+    private GodinaSkolovanja godina;
 }
