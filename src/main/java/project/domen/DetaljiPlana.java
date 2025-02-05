@@ -12,8 +12,8 @@ public class DetaljiPlana {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "plan_id")
-    private MesecniPlan plan;
+    @JoinColumn(name = "mesecni_plan_id")
+    private MesecniPlan mesecniPlan;
 
     @ManyToOne
     @JoinColumn(name = "nastavna_jedinica_id")

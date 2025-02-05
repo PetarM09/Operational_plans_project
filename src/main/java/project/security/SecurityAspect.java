@@ -32,6 +32,7 @@ public class SecurityAspect {
         //Get method signature
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         Method method = methodSignature.getMethod();
+        System.out.println("DA");
         //Check for authorization parameter
         String token = null;
         for (int i = 0; i < methodSignature.getParameterNames().length; i++) {
@@ -50,11 +51,13 @@ public class SecurityAspect {
         //Try to parse token
         Claims claims = tokenService.parseToken(token);
         //If fails return UNAUTHORIZED response
+        System.out.println(claims);
         if (claims == null) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         //Check user role and proceed if user has appropriate role for specified route
         CheckSecurity checkSecurity = method.getAnnotation(CheckSecurity.class);
+        System.out.println(claims);
         String role = claims.get("role", String.class);
         if (Arrays.asList(checkSecurity.roles()).contains(role)) {
             return joinPoint.proceed();
