@@ -23,11 +23,6 @@ public class MesecniPlanController {
         this.fajlService = fajlService;
     }
 
-    @PostMapping("/hello")
-    public ResponseEntity<String> hello(@RequestBody String name) {
-        return ResponseEntity.ok("Hello, " + name);
-    }
-
     @CheckSecurity(roles = {"ADMIN"})
     @PostMapping("/generisi")
     public ResponseEntity<String> generisiMesecniPlan(@RequestHeader("Authorization") String authorization, @RequestBody MesecniPlan mesecniPlan) {

@@ -20,8 +20,4 @@ public class PredmetIshod {
     @ManyToOne
     @JoinColumn(name = "predmet_id")
     private Predmet predmet;
-
-    @ManyToOne
-    @JoinColumn(name = "godina_id")
-    private GodinaSkolovanja godina;
 }
